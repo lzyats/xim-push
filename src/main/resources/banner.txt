@@ -1,0 +1,5 @@
+Spring Version : ${spring-boot.version}
+Spring Active  : ${spring.profiles.active}
+Project Version: ${platform.version}
+WebSocket Port : ${platform.port}
+Server Port    : ${server.port}

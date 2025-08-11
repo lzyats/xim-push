@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: dev
+
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: ${random.int[7000,8000]}
+
+# 日志配置
+logging:
+  level:
+    com.platform: info
+    org.springframework: warn
+    org.apache.rocketmq: error
