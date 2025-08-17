@@ -10,20 +10,27 @@ import cn.hutool.json.JSONUtil;
 import com.platform.modules.msg.enums.ChannelEnum;
 import com.platform.modules.msg.utils.EncryptUtils;
 import io.netty.handler.codec.http.FullHttpRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.Charset;
 import java.util.Map;
-
+@Slf4j
 @Component
 public class PushAuthHandler {
+
+    @Value("${platform.secret}")
+    private String secret;
 
     /**
      * 获取通道
      */
     public ChannelEnum getChannelEnum(FullHttpRequest request) {
-        String channelPath = ReUtil.getGroup0("/[a-z0-9]*", request.uri());
+        //String channelPath = ReUtil.getGroup0("/[a-z0-9]*", request.uri());
+        String uri = request.uri();
+        String path = uri.contains("?") ? uri.substring(0, uri.indexOf("?")) : uri;
+        String channelPath = ReUtil.getGroup0("/[a-z0-9]*", path);
         if ("/ws".equals(channelPath)) {
             return ChannelEnum.MSG;
         }
@@ -34,6 +41,7 @@ public class PushAuthHandler {
      * 获取Token
      */
     public String getToken(FullHttpRequest request, ChannelEnum channelEnum) {
+        log.info("请求token");
         // 转换请求
         Map<String, String> requestMap = HttpUtil.decodeParamMap(request.uri(), Charset.defaultCharset());
         String token = requestMap.get("Authorization");
@@ -48,8 +56,6 @@ public class PushAuthHandler {
         return token;
     }
 
-    @Value("${platform.secret:e3dc7597a259bd3a}")
-    private String secret;
 
     /**
      * 解密
@@ -60,7 +66,7 @@ public class PushAuthHandler {
             JSONObject jsonObject = JSONUtil.parseObj(decrypt);
             return jsonObject.getStr("userId");
         } catch (Exception e) {
-            Console.log(e);
+            log.error("Token解密失败: {}", token, e);
             return null;
         }
     }
