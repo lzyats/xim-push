@@ -7,19 +7,19 @@ platform:
   # 端口
   port: 8888
   # 秘钥
-  secret: 3c17c816846c231c
+  secret: YTY9FRenXiJNeE2x
 
 # MQ配置
 rocketmq:
   # 服务接入地址
-  name-server: MQ_INST_rocketmxxxxxxxxxxxxxxxa_im.tdmq-rocketmq.ap-bj.public.tencenttdmq.com:9876
+  name-server: 110.42.56.25:9876
   # 消费者配置
   consumer:
     # AccessKey
-    access-key: AccessKey
+    access-key: admin123
     # SecretKey
-    secret-key: SecretKey
+    secret-key: admin123admin123
   # 消费主题
-  topic: im
+  topic: testim
   # 消费者组
-  group: im
+  group: testim

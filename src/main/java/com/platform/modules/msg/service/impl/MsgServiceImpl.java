@@ -6,6 +6,7 @@ import com.platform.modules.msg.enums.ChannelEnum;
 import com.platform.modules.msg.service.MsgService;
 import com.platform.modules.msg.vo.MessageVo;
 import com.platform.modules.push.handler.PushMsgHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.List;
  * 消息 服务层实现
  * </p>
  */
+@Slf4j
 @Service("msgService")
 public class MsgServiceImpl implements MsgService {
 
@@ -36,6 +38,7 @@ public class MsgServiceImpl implements MsgService {
             ChannelEnum channelEnum = messageVo.getChannelEnum();
             // 消息内容
             String content = messageVo.getContent();
+            //log.info("收到消息：{}",content);
             // 接收人员
             List<String> receiveList = messageVo.getReceiveList();
             switch (channelEnum) {

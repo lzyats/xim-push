@@ -7,27 +7,10 @@ platform:
   # 端口
   port: 8888
   # 秘钥
-  secret: 3c17c816846c231c
-
-# MQ配置
-rocketmq1:
-  # 服务接入地址
-  name-server: MQ_INST_rocketmxxxxxxxxxxxxxxxa_im.tdmq-rocketmq.ap-bj.public.tencenttdmq.com:9876
-  # 消费者配置
-  consumer:
-    # AccessKey
-    access-key: AccessKey
-    # SecretKey
-    secret-key: SecretKey
-  # 消费主题
-  topic: alpaca_im
-  # 消费者组
-  group: alpaca_im
-
+  secret: YTY9FRenXiJNeE2x
 # MQ配置
 rocketmq:
   # 服务接入地址
-  #name-server: 172.88.0.1:9876
   name-server: 110.42.56.25:9876
   # 消费者配置
   consumer:
